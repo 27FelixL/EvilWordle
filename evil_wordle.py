@@ -205,7 +205,7 @@ def fast_sort(lst):
         return lst
     mid = len(lst) // 2
     left = fast_sort(lst[:mid])
-    right = fast_sort(lst[mid:])  
+    right = fast_sort(lst[mid:])
     sorted_list = []
     i = j = 0
     while i < len(left) and j < len(right):
@@ -216,7 +216,7 @@ def fast_sort(lst):
             sorted_list.append(right[j])
             j += 1
     sorted_list.extend(left[i:])
-    sorted_list.extend(right[j:]) 
+    sorted_list.extend(right[j:])
     return sorted_list
 
 def get_feedback_colors(secret_word, guessed_word):
@@ -242,10 +242,10 @@ def get_feedback(remaining_secret_words, guessed_word):
     """
     word_families = {}
     for word in remaining_secret_words:
-            feedback_colors = tuple(get_feedback_colors(word, guessed_word))
-            if feedback_colors not in word_families:
-                word_families[feedback_colors] = []
-            word_families[feedback_colors].append(word)
+        feedback_colors = tuple(get_feedback_colors(word, guessed_word))
+        if feedback_colors not in word_families:
+            word_families[feedback_colors] = []
+        word_families[feedback_colors].append(word)
     word_family_list = [WordFamily(pattern, words) for pattern, words in word_families.items()]
     hardest_family = fast_sort(word_family_list)[0]
     return hardest_family.feedback_colors, hardest_family.words
